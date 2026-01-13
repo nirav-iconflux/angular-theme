@@ -1,0 +1,39 @@
+<div class="border-b border-[var(--border)]">
+  <h3>
+    <button
+      type="button"
+      [attr.aria-expanded]="isOpen()"
+      (click)="toggle()"
+      class="flex w-full items-center justify-between py-4 text-left text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 text-[var(--foreground)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2"
+      [attr.data-state]="isOpen() ? 'open' : 'closed'"
+    >
+      <ng-content select="[trigger]"></ng-content>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-4 w-4 shrink-0 transition-transform duration-200 text-[var(--muted-foreground)]"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </h3>
+  @if(isOpen()){
+  <div
+    animate.enter="accordion-enter"
+    animate.leave="accordion-leave"
+    role="region"
+    class="overflow-hidden text-sm text-[var(--muted-foreground)]"
+  >
+    <p class="pb-4 pt-0">
+      <ng-content select="[content]"></ng-content>
+    </p>
+  </div>
+  }
+</div>

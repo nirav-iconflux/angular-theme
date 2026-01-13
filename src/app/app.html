@@ -1,0 +1,74 @@
+<div class="p-10 space-y-8 font-sans">
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Variants</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <app-button>Primary</app-button>
+            <app-button variant="secondary">Secondary</app-button>
+            <app-button variant="destructive">Destructive</app-button>
+            <app-button variant="outline">Outline</app-button>
+            <app-button variant="ghost">Ghost</app-button>
+            <app-button variant="link">Link</app-button>
+        </div>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Sizes</h2>
+        <div class="flex flex-wrap gap-4 items-end">
+            <app-button size="sm">Small</app-button>
+            <app-button size="default">Default</app-button>
+            <app-button size="lg">Large</app-button>
+            <app-button size="icon" variant="outline" aria-label="Icon Button">★</app-button>
+        </div>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">States</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <app-button disabled>Disabled Primary</app-button>
+            <app-button variant="outline" disabled>Disabled Outline</app-button>
+        </div>
+    </section>
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Icon with Text</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <app-button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download
+            </app-button>
+            <app-button variant="secondary">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                 </svg>
+                 Add New
+            </app-button>
+        </div>
+    </section>
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Accordion</h2>
+        <div class="max-w-md space-y-4">
+            <app-accordion>
+                <span trigger>Is it accessible?</span>
+                <ng-container content> Yes. It adheres to the WAI-ARIA design pattern.</ng-container>
+            </app-accordion>
+            
+            <app-accordion>
+                <span trigger>Is it styled?</span>
+                <ng-container content>Yes. It comes with default styles that matches the other components' aesthetic.</ng-container>
+            </app-accordion>
+
+            <app-accordion>
+                <span trigger>Is it animated?</span>
+                <ng-container content>Yes. It's animated by default, but you can disable it if you prefer.</ng-container>
+            </app-accordion>
+        </div>
+    </section>
+</div>
+
+<div id="dialog-root-wrapper"></div>
+<router-outlet />

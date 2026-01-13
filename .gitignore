@@ -1,4 +1,4 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
 /dist
@@ -6,21 +6,13 @@
 /out-tsc
 /bazel-out
 
-# Dependencies
+# Node
 /node_modules
 npm-debug.log
 yarn-error.log
 
-# Angular (Modern versions) - Vital for build caching
-/.angular
-.angular/cache
-
-# Profiling files
-chrome-profiler-events.json
-speed-measure-plugin.json
-
-# IDEs and Editors
-/.idea
+# IDEs and editors
+.idea/
 .project
 .classpath
 .c9/
@@ -37,19 +29,15 @@ speed-measure-plugin.json
 .history/*
 
 # Miscellaneous
-/.sass-cache
+/.angular/cache
+.sass-cache/
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
 testem.log
 /typings
+__screenshots__/
 
-# System Files
+# System files
 .DS_Store
 Thumbs.db
-
-# Environment Files (Optional: Uncomment if you use local secrets)
-# src/environments/environment.development.ts
-# .env
