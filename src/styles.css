@@ -54,7 +54,10 @@
   --shadow-xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.16), 0px 8px 10px -1px hsl(0 0% 0% / 0.16);
   --shadow-2xl: 0px 2px 3px 0px hsl(0 0% 0% / 0.40);
   --tracking-normal: -0.025em;
-  --spacing: 0.27rem;
+  --app-sidebar-width-collapsed: 4rem;
+  --app-sidebar-width-expanded: 18rem;
+  --app-navbar-height: 4rem;
+  --app-bg-main: var(--background);
 }
 
 .dark {

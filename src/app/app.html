@@ -1,133 +1,117 @@
-<div class="p-10 space-y-8 font-sans">
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Variants</h2>
-        <div class="flex flex-wrap gap-4 items-center">
-            <app-button (click)="openDialog()">Primary</app-button>
-            <app-button variant="secondary">Secondary</app-button>
-            <app-button variant="destructive">Destructive</app-button>
-            <app-button variant="outline">Outline</app-button>
-            <app-button variant="ghost">Ghost</app-button>
-            <app-button variant="link">Link</app-button>
-        </div>
-    </section>
+<div class="flex h-screen w-full overflow-hidden bg-[var(--background)] text-[var(--foreground)] font-sans">
+  
+  <!-- Sidebar -->
+  <aside 
+    class="flex shrink-0 z-30 border-r border-[var(--border)] bg-[var(--sidebar)] transition-all duration-300 ease-in-out overflow-hidden" 
+    [style.width]="isExpanded() ? 'var(--app-sidebar-width-expanded)' : 'var(--app-sidebar-width-collapsed)'"
+  >
+    <!-- 2. Secondary Panel (Collapsible content) -->
+    <div class="flex flex-col flex-1 min-w-0 h-full bg-[var(--sidebar)] py-6 px-4 gap-6 opacity-100 transition-opacity duration-300"
+         [class.opacity-0]="!isExpanded()"
+         [class.pointer-events-none]="!isExpanded()">
+       
+       <!-- Header -->
+       <div class="flex items-center justify-between pb-6 ps-5">
+          <h2 class="font-semibold text-sm text-[var(--muted-foreground)] uppercase tracking-wider">Campaigns</h2>
+          <button (click)="toggleSidebar()" class="h-6 w-6 flex items-center justify-center rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--muted-foreground)] transition-colors">
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 12l12 6"/></svg>
+          </button>
+       </div>
 
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Sizes</h2>
-        <div class="flex flex-wrap gap-4 items-end">
-            <app-button size="sm">Small</app-button>
-            <app-button size="default">Default</app-button>
-            <app-button size="lg">Large</app-button>
-            <app-button size="icon" variant="outline" aria-label="Icon Button">★</app-button>
-        </div>
-    </section>
+       <!-- Section 1 -->
+       <div class="space-y-1">
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md bg-[var(--accent)] text-[var(--accent-foreground)] font-medium text-sm transition-colors">
+             <span class="shrink-0 text-[var(--primary)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.chart"></span>
+             Overview
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--sidebar-foreground)] font-medium text-sm transition-colors group">
+             <span class="shrink-0 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.rocket"></span>
+             Recommendations
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--sidebar-foreground)] font-medium text-sm transition-colors group justify-between">
+             <div class="flex items-center gap-3">
+                 <span class="shrink-0 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.sparkles"></span>
+                 Insights
+             </div>
+             <span class="bg-[var(--primary)]/10 text-[var(--primary)] text-xs font-semibold px-2 py-0.5 rounded-full">10</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--sidebar-foreground)] font-medium text-sm transition-colors group">
+             <span class="shrink-0 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.megaphone"></span>
+             Campaigns
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--sidebar-foreground)] font-medium text-sm transition-colors group">
+             <span class="shrink-0 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.search"></span>
+             Keywords
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--sidebar-accent)] text-[var(--sidebar-foreground)] font-medium text-sm transition-colors group">
+             <span class="shrink-0 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] [&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.pie"></span>
+             Reporting
+          </a>
+       </div>       
+       
+       <!-- Bottom Card -->
+       <div class="mt-auto border border-[var(--sidebar-border)] rounded-xl p-3 bg-[var(--card)] shadow-xs flex items-center justify-between cursor-pointer hover:border-[var(--primary)] transition-colors group">
+           <div class="flex items-center gap-3">
+               <div class="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-200 font-bold text-xs">
+                   C
+               </div>
+               <div class="flex flex-col">
+                   <span class="text-sm font-semibold text-[var(--foreground)]">Team Catalog</span>
+                   <span class="text-[10px] text-[var(--muted-foreground)]">Analytics ID 63066612</span>
+               </div>
+           </div>
+           <svg class="text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] transition-colors" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+       </div>
 
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">States</h2>
-        <div class="flex flex-wrap gap-4 items-center">
-            <app-button disabled>Disabled Primary</app-button>
-            <app-button variant="outline" disabled>Disabled Outline</app-button>
-        </div>
-    </section>
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Icon with Text</h2>
-        <div class="flex flex-wrap gap-4 items-center">
-            <app-button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                Download
-            </app-button>
-            <app-button variant="secondary">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="16"></line>
-                    <line x1="8" y1="12" x2="16" y2="12"></line>
-                 </svg>
-                 Add New
-            </app-button>
-        </div>
-    </section>
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Accordion</h2>
-        <div class="max-w-md space-y-4">
-            <app-accordion>
-                <span trigger>Is it accessible?</span>
-                <ng-container content> Yes. It adheres to the WAI-ARIA design pattern.</ng-container>
-            </app-accordion>
-            
-            <app-accordion>
-                <span trigger>Is it styled?</span>
-                <ng-container content>Yes. It comes with default styles that matches the other components' aesthetic.</ng-container>
-            </app-accordion>
+    </div>
+  </aside>
 
-            <app-accordion>
-                <span trigger>Is it animated?</span>
-                <ng-container content>Yes. It's animated by default, but you can disable it if you prefer.</ng-container>
-            </app-accordion>
-        </div>
-    </section>
-    <section class="space-y-4">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Dialog</h2>
-        <div class="flex flex-wrap gap-4 items-center">
-            <app-button (click)="openDialog()">Dialog Centered Aligned</app-button>
-            <app-button variant="secondary" (click)="openDialogRight()">Dialog Right Aligned</app-button>
-        </div>
-    </section>
-
-    <!-- Alert -->
-    <section class="space-y-6">
-        <h2 class="text-2xl font-bold text-[var(--foreground)]">Alert</h2>
-
-        <!-- Basic -->
-        <div class="space-y-2">
-            <p class="text-sm font-medium">Basic</p>
-            <p class="text-sm text-muted-foreground">A basic alert with an icon, title and description.</p>
-            <app-alert variant="basic" class="max-w-lg">
-                <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span alert-title>Account updated successfully</span>
-                <span alert-description>Your profile information has been saved. Changes will be reflected immediately.</span>
-            </app-alert>
+  <!-- Main Wrapper -->
+  <div class="flex flex-1 flex-col min-w-0 overflow-hidden bg-[var(--app-bg-main)]">
+    
+    <!-- Top Navbar -->
+    <header class="h-[var(--app-navbar-height)] flex items-center justify-between px-6 bg-[var(--background)] border-b border-[var(--border)] shrink-0 z-10 sticky top-0">
+        
+        <!-- Left: Breadcrumb / Title -->
+        <div class="flex items-center gap-4">
+            @if(!isExpanded()) {
+                <button (click)="toggleSidebar()" class="h-9 w-9 flex items-center justify-center rounded-md border border-[var(--input)] bg-[var(--background)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] shadow-sm transition-colors">
+                    <span class="[&>svg]:w-5 [&>svg]:h-5" [innerHTML]="svg.menu"></span>
+                </button>
+            }
+            <div class="flex items-center text-sm text-[var(--muted-foreground)]">
+                <span class="hover:text-[var(--foreground)] cursor-pointer transition-colors">Workplace</span>
+                <span class="mx-2 text-[var(--border)]">/</span>
+                <span class="font-medium text-[var(--foreground)]">Analytics Dashboard</span>
+            </div>
         </div>
 
-        <!-- Destructive -->
-        <div class="space-y-2">
-            <p class="text-sm font-medium">Destructive</p>
-            <p class="text-sm text-muted-foreground">Use <code class="rounded bg-muted px-1 py-0.5 text-xs">variant="destructive"</code> to create a destructive alert.</p>
-            <app-alert variant="destructive" class="max-w-lg">
-                <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span alert-title>Payment failed</span>
-                <span alert-description>Your payment could not be processed. Please check your payment method and try again.</span>
-            </app-alert>
-        </div>
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-3">
+             <div class="relative">
+                 <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] [&>svg]:w-4 [&>svg]:h-4" [innerHTML]="svg.search"></span>
+                 <input type="text" placeholder="Search..." class="pl-9 pr-4 py-2 h-9 text-sm rounded-md border border-[var(--input)] bg-[var(--background)] focus:outline-none focus:ring-1 focus:ring-[var(--ring)] w-64 transition-all">
+             </div>
+             
+             <div class="h-6 w-px bg-[var(--border)] mx-1"></div>
 
-        <!-- Action -->
-        <div class="space-y-2">
-            <p class="text-sm font-medium">Action</p>
-            <app-alert variant="action" class="max-w-lg">
-                <span alert-title>Dark mode is now available</span>
-                <span alert-description>Enable it under your profile settings to get started.</span>
-                <app-button alert-action size="sm">Enable</app-button>
-            </app-alert>
+             <app-button variant="outline" size="sm" class="gap-2">
+                 <span class="[&>svg]:w-4 [&>svg]:h-4" [innerHTML]="svg.share"></span>
+                 Export
+             </app-button>
+             <app-button size="sm">Create Report</app-button>
         </div>
+    </header>
 
-        <!-- Custom Colors -->
-        <div class="space-y-2">
-            <p class="text-sm font-medium">Custom Colors</p>
-            <p class="text-sm text-muted-foreground">You can customize the alert colors by adding custom classes such as <code class="rounded bg-muted px-1 py-0.5 text-xs">bg-amber-50 dark:bg-amber-950 border-amber-200</code> to the Alert component.</p>
-            <app-alert class="max-w-lg bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-100">
-                <svg alert-icon class="text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                <span alert-title>Your subscription will expire in 3 days.</span>
-                <span alert-description class="text-amber-700 dark:text-amber-300">Renew now to avoid service interruption or upgrade to a paid plan to continue using the service.</span>
-            </app-alert>
-        </div>
-    </section>
+    <!-- Main Content Internal Scroll -->
+    <main class="flex-1 overflow-auto p-6 scroll-smooth">
+        <router-outlet />
+    </main>
+  </div>
 </div>
 
+<!-- Global Overlays -->
 @if(isDialogOpen()) {
     <app-dialog-content (closed)="isDialogOpen.set(false)" [layoutType]="dialogLayoutType()"></app-dialog-content>
 }
-
 <div id="form-dialog-root-wrapper"></div>
-<router-outlet />

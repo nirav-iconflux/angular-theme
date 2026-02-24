@@ -1,0 +1,204 @@
+<div class="space-y-8">
+    <!-- Reuse Existing Components to demonstrate Content -->
+
+    <section class="mb-6">
+        <div class="flex items-center justify-between">
+            <h1 class="text-3xl font-bold tracking-tight text-[var(--foreground)]">Component Gallery</h1>
+          
+        </div>
+    </section>
+
+    <!-- Existing Demo Content -->
+    <div class="rounded-xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-sm">
+        
+        <!-- Original content below -->
+        <div class="p-0 space-y-8 font-sans">
+            <section class="space-y-4">
+                <h2 class="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider">Button Variants</h2>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <app-button (click)="openDialog()">Primary</app-button>
+                    <app-button variant="secondary">Secondary</app-button>
+                    <app-button variant="destructive">Destructive</app-button>
+                    <app-button variant="outline">Outline</app-button>
+                    <app-button variant="ghost">Ghost</app-button>
+                    <app-button variant="link">Link</app-button>
+                </div>
+            </section>
+
+            <section class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider mb-4">Accordion
+                        </h2>
+                        <div class="max-w-md space-y-4">
+                            <app-accordion>
+                                <span trigger>Is it accessible?</span>
+                                <ng-container content> Yes. It adheres to the WAI-ARIA design pattern.</ng-container>
+                            </app-accordion>
+
+                            <app-accordion>
+                                <span trigger>Is it styled?</span>
+                                <ng-container content>Yes. It comes with default styles that matches the other
+                                    components' aesthetic.</ng-container>
+                            </app-accordion>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider mb-4">Dialogs
+                        </h2>
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <app-button (click)="openDialog()">Dialog Centered Aligned</app-button>
+                            <app-button variant="secondary" (click)="openDialogRight()">Dialog Right
+                                Aligned</app-button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Dropdown Menu ──────────────────────────────────────────────────── -->
+            <section class="space-y-6">
+                <h2 class="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider">Dropdown Menu</h2>
+
+                <div class="flex flex-wrap gap-8 items-start">
+
+                    <!-- 1. Basic -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Basic</p>
+                        <app-dropdown-menu [items]="basicItems" variant="basic">
+                            <app-button trigger variant="outline" size="sm">Open</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 3. Icons -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Icons</p>
+                        <app-dropdown-menu [items]="iconsItems" variant="icons">
+                            <app-button trigger variant="outline" size="sm">Actions</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 4. Checkboxes -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Checkboxes</p>
+                        <app-dropdown-menu [items]="checkboxItems" variant="checkboxes" [closeOnSelect]="false">
+                            <app-button trigger variant="outline" size="sm">Open</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 5. Checkbox + Icons -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Checkbox + Icons
+                        </p>
+                        <app-dropdown-menu [items]="checkboxIconItems" variant="checkbox-icons" [closeOnSelect]="false">
+                            <app-button trigger variant="outline" size="sm">Notifications</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 6. Radio Group -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Radio Group</p>
+                        <app-dropdown-menu [items]="radioItems" variant="radio" [closeOnSelect]="false">
+                            <app-button trigger variant="outline" size="sm">Open</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 7. Radio + Icons -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Radio + Icons
+                        </p>
+                        <app-dropdown-menu [items]="radioIconItems" variant="radio-icons" [closeOnSelect]="false">
+                            <app-button trigger variant="secondary" size="sm">Payment Method</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                    <!-- 8. Destructive -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Destructive</p>
+                        <app-dropdown-menu [items]="destructiveItems" variant="destructive">
+                            <app-button trigger variant="outline" size="sm">Open</app-button>
+                        </app-dropdown-menu>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Alert -->
+            <section class="space-y-6">
+                <h2 class="text-sm font-bold text-[var(--foreground)] uppercase tracking-wider">Alert</h2>
+
+                <!-- Basic -->
+                <div class="space-y-2">
+                    <p class="text-sm font-medium">Basic</p>
+                    <p class="text-sm text-muted-foreground">A basic alert with an icon, title and description.</p>
+                    <app-alert variant="basic" class="max-w-lg">
+                        <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        <span alert-title>Account updated successfully</span>
+                        <span alert-description>Your profile information has been saved. Changes will be reflected
+                            immediately.</span>
+                    </app-alert>
+                </div>
+
+                <!-- Destructive -->
+                <div class="space-y-2">
+                    <p class="text-sm font-medium">Destructive</p>
+                    <p class="text-sm text-muted-foreground">Use <code
+                            class="rounded bg-muted px-1 py-0.5 text-xs">variant="destructive"</code> to create a
+                        destructive alert.</p>
+                    <app-alert variant="destructive" class="max-w-lg">
+                        <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        <span alert-title>Payment failed</span>
+                        <span alert-description>Your payment could not be processed. Please check your payment method
+                            and try again.</span>
+                    </app-alert>
+                </div>
+
+                <!-- Action -->
+                <div class="space-y-2">
+                    <p class="text-sm font-medium">Action</p>
+                    <app-alert variant="action" class="max-w-lg">
+                        <span alert-title>Dark mode is now available</span>
+                        <span alert-description>Enable it under your profile settings to get started.</span>
+                        <app-button alert-action size="sm">Enable</app-button>
+                    </app-alert>
+                </div>
+
+                <!-- Custom Colors -->
+                <div class="space-y-2">
+                    <p class="text-sm font-medium">Custom Colors</p>
+                    <p class="text-sm text-muted-foreground">You can customize the alert colors by adding custom classes
+                        such as <code
+                            class="rounded bg-muted px-1 py-0.5 text-xs">bg-amber-50 dark:bg-amber-950 border-amber-200</code>
+                        to the Alert component.</p>
+                    <app-alert
+                        class="max-w-lg bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-100">
+                        <svg alert-icon class="text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                            <path d="M12 9v4" />
+                            <path d="M12 17h.01" />
+                        </svg>
+                        <span alert-title>Your subscription will expire in 3 days.</span>
+                        <span alert-description class="text-amber-700 dark:text-amber-300">Renew now to avoid service
+                            interruption or upgrade to a paid plan to continue using the service.</span>
+                    </app-alert>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+</div>
+
+@if(isDialogOpen()) {
+<app-dialog-content (closed)="isDialogOpen.set(false)" [layoutType]="dialogLayoutType()"></app-dialog-content>
+}

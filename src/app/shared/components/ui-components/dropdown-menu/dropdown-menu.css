@@ -1,0 +1,6 @@
+/* Destructive item hover – handled here because [class.hover:*] bindings are
+   not supported in Angular template syntax. The .dd-destructive class is
+   added via [class.dd-destructive]="item.destructive" binding.             */
+.dd-destructive:hover {
+  background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+}
