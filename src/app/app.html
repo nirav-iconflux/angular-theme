@@ -2,7 +2,7 @@
     <section class="space-y-4">
         <h2 class="text-2xl font-bold text-[var(--foreground)]">Variants</h2>
         <div class="flex flex-wrap gap-4 items-center">
-            <app-button>Primary</app-button>
+            <app-button (click)="openDialog()">Primary</app-button>
             <app-button variant="secondary">Secondary</app-button>
             <app-button variant="destructive">Destructive</app-button>
             <app-button variant="outline">Outline</app-button>
@@ -68,7 +68,66 @@
             </app-accordion>
         </div>
     </section>
+    <section class="space-y-4">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Dialog</h2>
+        <div class="flex flex-wrap gap-4 items-center">
+            <app-button (click)="openDialog()">Dialog Centered Aligned</app-button>
+            <app-button variant="secondary" (click)="openDialogRight()">Dialog Right Aligned</app-button>
+        </div>
+    </section>
+
+    <!-- Alert -->
+    <section class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--foreground)]">Alert</h2>
+
+        <!-- Basic -->
+        <div class="space-y-2">
+            <p class="text-sm font-medium">Basic</p>
+            <p class="text-sm text-muted-foreground">A basic alert with an icon, title and description.</p>
+            <app-alert variant="basic" class="max-w-lg">
+                <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span alert-title>Account updated successfully</span>
+                <span alert-description>Your profile information has been saved. Changes will be reflected immediately.</span>
+            </app-alert>
+        </div>
+
+        <!-- Destructive -->
+        <div class="space-y-2">
+            <p class="text-sm font-medium">Destructive</p>
+            <p class="text-sm text-muted-foreground">Use <code class="rounded bg-muted px-1 py-0.5 text-xs">variant="destructive"</code> to create a destructive alert.</p>
+            <app-alert variant="destructive" class="max-w-lg">
+                <svg alert-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span alert-title>Payment failed</span>
+                <span alert-description>Your payment could not be processed. Please check your payment method and try again.</span>
+            </app-alert>
+        </div>
+
+        <!-- Action -->
+        <div class="space-y-2">
+            <p class="text-sm font-medium">Action</p>
+            <app-alert variant="action" class="max-w-lg">
+                <span alert-title>Dark mode is now available</span>
+                <span alert-description>Enable it under your profile settings to get started.</span>
+                <app-button alert-action size="sm">Enable</app-button>
+            </app-alert>
+        </div>
+
+        <!-- Custom Colors -->
+        <div class="space-y-2">
+            <p class="text-sm font-medium">Custom Colors</p>
+            <p class="text-sm text-muted-foreground">You can customize the alert colors by adding custom classes such as <code class="rounded bg-muted px-1 py-0.5 text-xs">bg-amber-50 dark:bg-amber-950 border-amber-200</code> to the Alert component.</p>
+            <app-alert class="max-w-lg bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-100">
+                <svg alert-icon class="text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                <span alert-title>Your subscription will expire in 3 days.</span>
+                <span alert-description class="text-amber-700 dark:text-amber-300">Renew now to avoid service interruption or upgrade to a paid plan to continue using the service.</span>
+            </app-alert>
+        </div>
+    </section>
 </div>
 
-<div id="dialog-root-wrapper"></div>
+@if(isDialogOpen()) {
+    <app-dialog-content (closed)="isDialogOpen.set(false)" [layoutType]="dialogLayoutType()"></app-dialog-content>
+}
+
+<div id="form-dialog-root-wrapper"></div>
 <router-outlet />

@@ -1,0 +1,12 @@
+<app-dialog #formDialog (closed)="onClosed()" [layoutType]="layoutType">
+    <ng-container dialog-header>
+        Dialog Title
+    </ng-container>
+    <ng-container dialog-content>
+        <p class="p-6">This is the content of the dialog. You can put any information here, such as text, images, or even other components.</p>        
+    </ng-container>
+    <ng-container dialog-footer>
+        <app-button variant="outline" (click)="onDialogClose()">Close</app-button>
+        <app-button>Save Changes</app-button>
+    </ng-container>
+</app-dialog>
